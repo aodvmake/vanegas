@@ -19,9 +19,9 @@
 						$nombre="";
 						$precio=0;
 						$imagen="";
-						$re=mysql_query("select * from productos where id=".$_GET['id']);
-						while ($f=mysql_fetch_array($re)) {
-							$nombre=$f['nombre'];
+						$re=mysqli_query($con,"select * from productos where id=".$_GET['id']);
+						while ($f=mysqli_fetch_array($re)) {
+							$nombre=$f['Nombre'];
 							$precio=$f['precio'];
 							$imagen=$f['imagen'];
 						}
@@ -45,9 +45,9 @@
 			$nombre="";
 			$precio=0;
 			$imagen="";
-			$re=mysql_query("select * from productos where id=".$_GET['id']);
-			while ($f=mysql_fetch_array($re)) {
-				$nombre=$f['nombre'];
+			$re=mysqli_query($con,"select * from productos where id=".$_GET['id']);
+			while ($f=mysqli_fetch_array($re)) {
+				$nombre=$f['Nombre'];
 				$precio=$f['precio'];
 				$imagen=$f['imagen'];
 			}
@@ -110,7 +110,7 @@
 			}
 			echo '<center><h2 id="total">Total: '.$total.'</h2></center>';
 			if($total!=0){
-					echo '<center><a href="./compras/compras.php" class="aceptar">Comprar</a></center>;';
+					echo '<center><a href="./compras/compras.php" class="aceptar">Comprar</a></center>';
 			}
 			
 		?>

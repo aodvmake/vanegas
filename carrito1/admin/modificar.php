@@ -43,8 +43,8 @@
 				<td>Modificar</td>
 			</tr>
 		<?php 
-			$resultado=mysql_query("select * from productos");
-			while($row=mysql_fetch_array($resultado)){
+			$resultado=mysqli_query($con,"select * from productos");
+			while($row=mysqli_fetch_array($resultado)){
 				echo '
 				<tr>
 					<td>

@@ -1,12 +1,15 @@
 <?php
 session_start();
 include "../conexion.php";
+
+
+
 		$arreglo=$_SESSION['carrito'];
-		/*
+		
 		$numeroventa=0;
 
-		$re=mysql_query("select * from compras order by numeroventa DESC limit 1") or die(mysql_error());	
-		while (	$f=mysql_fetch_array($re)) {
+		$re=mysqli_query($con,"select * from compras order by numeroventa DESC limit 1") or die(mysqli_error());	
+		while (	$f=mysqli_fetch_array($re)) {
 					$numeroventa=$f['numeroventa'];	
 		}
 		if($numeroventa==0){
@@ -15,16 +18,16 @@ include "../conexion.php";
 			$numeroventa=$numeroventa+1;
 		}
 		for($i=0; $i<count($arreglo);$i++){
-			mysql_query("insert into compras (numeroventa, imagen,nombre,precio,cantidad,subtotal) values(
+			mysqli_query($con,"insert into compras (numeroventa, imagen,nombre,precio,cantidad,subtotal) values(
 				".$numeroventa.",
 				'".$arreglo[$i]['Imagen']."',
 				'".$arreglo[$i]['Nombre']."',	
 				'".$arreglo[$i]['Precio']."',
 				'".$arreglo[$i]['Cantidad']."',
 				'".($arreglo[$i]['Precio']*$arreglo[$i]['Cantidad'])."'
-				)")or die(mysql_error());
-		}*/
-		$total=0;
+				)")or die(mysqli_error());
+		}
+	$total=0;
 		$tabla='<table border="1">
 			<tr>
 			<th>Nombre</th>
@@ -43,7 +46,7 @@ include "../conexion.php";
 			$total=$total+($arreglo[$i]['Cantidad']*$arreglo[$i]['Precio']);
 		}
 		$tabla=$tabla.'</table>';
-		//echo $tabla;
+		echo $tabla;
 		$nombre="Roberto Vanegas Araiza";
 		$fecha=date("d-m-Y");
 		$hora=date("H:i:s");
@@ -74,12 +77,16 @@ include "../conexion.php";
 		';
 
 		//echo $comentario;
-		$headers="MIME-Version: 1.0\r\n";
-		$headers.="Content-type: text/html; charset=utf8\r\n";
-		$headers.="From: Remitente\r\n";
-		mail($correo,$asunto,$comentario,$headers);
+		//$headers="MIME-Version: 1.0\r\n";
+		//$headers.="Content-type: text/html; charset=utf8\r\n";
+		//$headers.="From: Remitente\r\n";
+		//mail($correo,$asunto,$comentario,$headers);
 		//unset($_SESSION['carrito']);
 		//header("Location: ../admin.php");
 		
 
 ?>
+<script language=javascript>
+window.open("../PDF.php", "Formato de compra")
+</script>
+<a href="../PDF.php">Imprimir PDF</a>

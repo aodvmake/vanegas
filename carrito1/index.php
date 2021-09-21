@@ -18,13 +18,13 @@
 		
 	<?php
 		include 'conexion.php';
-		$re=mysql_query("select * from productos")or die(mysql_error());
-		while ($f=mysql_fetch_array($re)) {
+		$re=mysqli_query($con,"select * from productos")or die(mysqli_error());
+		while ($f=mysqli_fetch_array($re)) {
 		?>
 			<div class="producto">
 			<center>
 				<img src="./productos/<?php echo $f['imagen'];?>"><br>
-				<span><?php echo $f['nombre'];?></span><br>
+				<span><?php echo $f['Nombre'];?></span><br>
 				<a href="./detalles.php?id=<?php  echo $f['id'];?>">ver</a>
 			</center>
 		</div>

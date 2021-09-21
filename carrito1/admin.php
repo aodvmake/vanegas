@@ -45,9 +45,9 @@ session_start();
 		</tr>	
 
 		<?php
-			$re=mysql_query("select * from compras");
+			$re=mysqli_query($con,"select * from compras");
 			$numeroventa=0;
-			while ($f=mysql_fetch_array($re)) {
+			while ($f=mysqli_fetch_array($re)) {
 					if($numeroventa	!=$f['numeroventa']){
 						echo '<tr><td>Compra Número: '.$f['numeroventa'].' </td></tr>';
 					}
