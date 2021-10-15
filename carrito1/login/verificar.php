@@ -6,6 +6,8 @@ $re=mysqli_query($con,"SELECT* from usuarios INNER JOIN puestos ON puestos.IDpue
 
 	while ($f=mysqli_fetch_array($re)) {
 		$rows=$f['puesto'];
+		$nombre=$f['Nombre'];
+		$Id=$f['Id'];
 		$arreglo[]=array('Nombre'=>$f['Nombre'],
 			'Apellido'=>$f['Apellido'],'Imagen'=>$f['Imagen']);
 	}
@@ -23,7 +25,8 @@ $re=mysqli_query($con,"SELECT* from usuarios INNER JOIN puestos ON puestos.IDpue
 	
 	$_SESSION['Usuario']=$arreglo;
 	$_SESSION['puesto']=$rows;
-
+    $_SESSION['Nombre']=$nombre;
+    $_SESSION['Idusuario']=$Id;
 	/*if(isset($arreglo)){
 		$_SESSION['Usuario']=$arreglo;
 		$_SESSION['puesto']=$rows;

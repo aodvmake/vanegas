@@ -1,14 +1,18 @@
 <?php
+session_start();
 include('conexion.php');
 require_once 'lib/dompdf/autoload.inc.php';//https://github.com/dompdf/dompdf/releases
 //Contenido del PDF
 $suma='';
+$nombre=$_SESSION['Nombre'];
+$Idusuario=$_SESSION['Idusuario'];
 $content="
 <center><div><h2>Formato de compra</h2></div></center>
 <br><br>
+<h3>Nombre del cliente:</h3>$nombre
 <div><h3>Productos</h3></div><br><br>
 ";
-$re=mysqli_query($con,'SELECT`id`, `numeroventa`, `nombre`, `imagen`, `precio`, `cantidad`, `subtotal` FROM `compras` ');
+$re=mysqli_query($con,'SELECT`id`, `numeroventa`, `nombre`, `imagen`, `precio`, `cantidad`, `subtotal` FROM `compras`WHERE IDusuario='.$Idusuario.' ');
 $content.='<table style="width:100%;" border="1">
  <tr>
    <th>Producto</th>

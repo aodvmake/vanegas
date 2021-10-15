@@ -1,5 +1,6 @@
 <?php
 session_start();
+$Idusuario=$_SESSION['Idusuario'];
 include "../conexion.php";
 
 
@@ -18,13 +19,14 @@ include "../conexion.php";
 			$numeroventa=$numeroventa+1;
 		}
 		for($i=0; $i<count($arreglo);$i++){
-			mysqli_query($con,"insert into compras (numeroventa, imagen,nombre,precio,cantidad,subtotal) values(
+			mysqli_query($con,"insert into compras (numeroventa, imagen,nombre,precio,cantidad,subtotal,IDusuario) values(
 				".$numeroventa.",
 				'".$arreglo[$i]['Imagen']."',
 				'".$arreglo[$i]['Nombre']."',	
 				'".$arreglo[$i]['Precio']."',
 				'".$arreglo[$i]['Cantidad']."',
-				'".($arreglo[$i]['Precio']*$arreglo[$i]['Cantidad'])."'
+				'".($arreglo[$i]['Precio']*$arreglo[$i]['Cantidad'])."',
+                '".$Idusuario."'
 				)")or die(mysqli_error());
 		}
 	$total=0;
